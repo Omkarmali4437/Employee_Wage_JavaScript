@@ -5,6 +5,7 @@ const PARTTIME_HRS=4;
 const WAGE_PER_HR=20;
 const MAX_NUMBER_OF_WORKING_DAYS=20;
 const TOTAL_WORKING_HRS=100;
+var dailWage=[];
 
 function getempHrs(empcheck){
     switch(empcheck){
@@ -17,14 +18,23 @@ function getempHrs(empcheck){
     }
 }
 
+function calcWage(totalWorkinghrs){
+    return totalWorkinghrs*WAGE_PER_HR;
+}
+
+let emphrs=0;
 let totalWorkinghrs=0;
 let totalworkingDays=0;
 while(totalWorkinghrs<=TOTAL_WORKING_HRS && totalworkingDays<MAX_NUMBER_OF_WORKING_DAYS){
     totalworkingDays++;
     let empcheck=Math.floor((Math.random()*10)%3);
-    totalWorkinghrs+=getempHrs(empcheck);
+    emphrs=getempHrs(empcheck);
+    totalWorkinghrs+=emphrs;
+    dailWage.push(calcWage(emphrs));
 }
-let empWage=totalWorkinghrs*WAGE_PER_HR;
+
+empWage=calcWage(totalWorkinghrs);
+console.log("Daily wage is: "+dailWage);
 console.log("Total Hours: "+totalWorkinghrs);
 console.log("Total Working Days: "+totalworkingDays);
 console.log("Daily Wage of a employee is: "+empWage);
