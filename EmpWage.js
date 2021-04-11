@@ -54,6 +54,7 @@ let emphrs=0;
 let totalWorkinghrs=0;
 let totalworkingDays=0;
 let empHrsArr=[];
+let empHrsWage=[];
 
 while(totalWorkinghrs<=TOTAL_WORKING_HRS && totalworkingDays<MAX_NUMBER_OF_WORKING_DAYS){
     totalworkingDays++;
@@ -62,6 +63,17 @@ while(totalWorkinghrs<=TOTAL_WORKING_HRS && totalworkingDays<MAX_NUMBER_OF_WORKI
     totalWorkinghrs+=emphrs;
     empHrsArr.push(emphrs);
     dailWage.push(calcWage(emphrs));
+    //UC10
+    empHrsWage.push(
+        {
+            daynum:totalworkingDays,
+            daylyhrs:emphrs,
+            dailwage:calcWage(emphrs),
+            toString(){
+                return "\nDay"+this.daynum+"=> Working Hours is: "+this.daylyhrs+" Wage Earned "+this.dailwage
+            },
+        }
+    );
 }
 
 //UC7A
@@ -110,3 +122,6 @@ empHrsArr.forEach((value,key,map) => {
 console.log("Full working Days are: "+fullWorkingDays);
 console.log("Part working Days are: "+partWorkingDays);
 console.log("Non working Days are: "+nonWorkingDays);
+
+//UC10
+console.log("Showing Daily hours worked and wage earned "+empHrsWage);
