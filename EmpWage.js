@@ -45,15 +45,22 @@ function getPartTime(dailwage){
     return dailwage.includes("80");
 }
 
+//UC9A
+const findTotal = (totalVal,dailyVal) => {
+    return totalVal+dailyVal;
+}
+
 let emphrs=0;
 let totalWorkinghrs=0;
 let totalworkingDays=0;
+let empHrsArr=[];
 
 while(totalWorkinghrs<=TOTAL_WORKING_HRS && totalworkingDays<MAX_NUMBER_OF_WORKING_DAYS){
     totalworkingDays++;
     let empcheck=Math.floor((Math.random()*10)%3);
     emphrs=getempHrs(empcheck);
     totalWorkinghrs+=emphrs;
+    empHrsArr.push(emphrs);
     dailWage.push(calcWage(emphrs));
 }
 
@@ -82,3 +89,24 @@ console.log("Check All Element have Full Time Wage "+fulltimeWage.every(getFullt
 
 //UC7F
 console.log("Check for Part time wage: "+mapDayWithWage.some(getPartTime));
+
+//UC9A
+let count=0;
+let totalHrs=Array.from(mapDayWithWage.values()).reduce(findTotal,0);
+let totalSalary=dailWage.filter(dailwage => dailwage>0).reduce(findTotal,0);
+console.log("Emp Wage wit Arrow "+"Total hrs: "+totalHrs+"Total Salary: "+totalSalary);
+
+//UC9B
+let nonWorkingDays=[];
+let partWorkingDays=[];
+let fullWorkingDays=[];
+
+empHrsArr.forEach((value,key,map) => {
+    if(value == 8) fullWorkingDays.push(key);
+    else if(value == 4)partWorkingDays.push(key);
+    else nonWorkingDays.push(key);
+});
+
+console.log("Full working Days are: "+fullWorkingDays);
+console.log("Part working Days are: "+partWorkingDays);
+console.log("Non working Days are: "+nonWorkingDays);
