@@ -62,7 +62,7 @@ dailWage.forEach(sum);
 
 //UC7B
 let mapDayWithWage=dailWage.map(dayCount);
-console.log(mapDayWithWage);
+console.log("Day with employee wage: "+mapDayWithWage);
 
 console.log("Daily wage is: "+dailWage);
 console.log("Total Hours: "+totalWorkinghrs);
